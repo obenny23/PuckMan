@@ -8,10 +8,9 @@ public class PacmanMove : MonoBehaviour
     public float speed = 40.0f;
     private Vector2 dest = Vector2.zero;
     private Vector2 nextDest;
-
     private Node currentNode,targetNode, previousNode;
-
     public Sprite idleSprite;
+    private int pelletsConsumed = 0;
 
 
     // Start is called before the first frame update
@@ -36,6 +35,7 @@ public class PacmanMove : MonoBehaviour
         Move();
         updateOrientation();
         UpdateAnimationState();
+        ConsumePellet();
     
     }
 
@@ -82,7 +82,7 @@ public class PacmanMove : MonoBehaviour
                     transform.localPosition = otherPortal.transform.position;
                     currentNode = otherPortal.GetComponent<Node>();
                 }
-                
+
                 Node moveToNode = CanMove(nextDest);
 
                 if (moveToNode != null) 
@@ -218,6 +218,40 @@ public class PacmanMove : MonoBehaviour
             }
         }
         return null;
+    }
+
+    GameObject GetTileAtPosition(Vector2 pos) 
+    {
+        int tileX = Mathf.RoundToInt(pos.x);
+        int tileY = Mathf.RoundToInt(pos.y);
+
+        GameObject tile = GameObject.Find("Game").GetComponent<GameBoard>().board[tileX,tileY];
+
+        if (tile != null)
+            return tile;
+        
+        return null;
+    }
+
+    void ConsumePellet() 
+    {
+        GameObject o = GetTileAtPosition(transform.position);
+
+        if (o != null) {
+            Tile tile = o.GetComponent<Tile>();
+            
+            if (tile != null){
+
+                if (!tile.didConsume && (tile.isPellet || tile.isSuperPellet))
+                {
+                    o.GetComponent<SpriteRenderer>().enabled = false;
+                    tile.didConsume = true;
+                    GameObject.Find("Game").GetComponent<GameBoard>().score += 10;
+                    pelletsConsumed++;
+                }
+                //add else if statement to track super pellet points
+            }
+        }
     }
 }
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5949741655365288999}
   - component: {fileID: 7217219102291135269}
   - component: {fileID: 2675405650706570876}
+  - component: {fileID: -3265876609171500585}
   m_Layer: 0
   m_Name: Blinky
   m_TagString: Untagged
@@ -101,3 +102,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-3265876609171500585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012548692616185221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69242006f0c10284fab444058b8b8b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
